@@ -1,3 +1,5 @@
 server/.idea/
 server/venv/lib/
 server/venv/bin/
+server/venv/*.json
+server/venv/*.cfg
