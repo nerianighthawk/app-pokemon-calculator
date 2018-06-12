@@ -14,18 +14,15 @@ db = PostgresqlExtDatabase(
 
 # ポケモンモデルを定義
 class Pokemon(pe.Model):
-    pokemonNo = pe.TextField()
+    pokemonNo = pe.TextField(primary_key=True)
     pokemonName = pe.TextField()
     hitPoint = pe.IntegerField()
     attack = pe.IntegerField()
     block = pe.IntegerField()
     concentration = pe.IntegerField()
-    defence = pe.IntegerField()
+    defense = pe.IntegerField()
     speed = pe.IntegerField()
     weight = pe.IntegerField()
-    CharacteristicId1 = pe.TextField()
-    CharacteristicId2 = pe.TextField()
-    CharacteristicId3 = pe.TextField()
 
     class Meta:
         database = db
@@ -42,21 +39,15 @@ for line in open("pokemon.tsv", "r"):
      attack,
      block,
      concentration,
-     defence,
+     defense,
      speed,
-     weight,
-     CharacteristicId1,
-     CharacteristicId2,
-     CharacteristicId3) = tuple(line[:-1].split(" "))
+     weight) = tuple(line[:-1].split("\u0009"))
     Pokemon.create(pokemonNo=pokemonNo,
                    pokemonName=pokemonName,
                    hitPoint=int(hitPoint),
                    attack=int(attack),
                    block=int(block),
                    concentration=int(concentration),
-                   defence=int(defence),
+                   defense=int(defense),
                    speed=int(speed),
-                   weight=int(weight),
-                   CharacteristicId1=CharacteristicId1,
-                   CharacteristicId2=CharacteristicId2,
-                   CharacteristicId3=CharacteristicId3)
+                   weight=int(weight))
