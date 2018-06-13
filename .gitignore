@@ -3,3 +3,8 @@ server/venv/lib/
 server/venv/bin/
 server/venv/*.json
 server/venv/*.cfg
+front/*.json
+front/*.js
+front/.editorconfig
+front/e2e/
+front/node_module/
