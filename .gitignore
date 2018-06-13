@@ -7,4 +7,4 @@ front/*.json
 front/*.js
 front/.editorconfig
 front/e2e/
-front/node_module/
+front/node_modules/

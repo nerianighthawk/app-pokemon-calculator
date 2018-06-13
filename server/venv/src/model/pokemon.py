@@ -32,7 +32,7 @@ class Pokemon(pe.Model):
 Pokemon.create_table()
 
 # tsvファイルを一行ずつ読み込んでタブで分割し，それぞれをデータベースに登録
-for line in open("pokemon.tsv", "r"):
+for line in open("resources/pokemon.tsv", "r"):
     (pokemonNo,
      pokemonName,
      hitPoint,
