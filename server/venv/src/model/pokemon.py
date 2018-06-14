@@ -14,8 +14,8 @@ db = PostgresqlExtDatabase(
 
 # ポケモンモデルを定義
 class Pokemon(pe.Model):
-    pokemonNo = pe.TextField(primary_key=True)
-    pokemonName = pe.TextField()
+    no = pe.TextField(primary_key=True)
+    name = pe.TextField()
     hitPoint = pe.IntegerField()
     attack = pe.IntegerField()
     block = pe.IntegerField()
@@ -33,8 +33,8 @@ Pokemon.create_table()
 
 # tsvファイルを一行ずつ読み込んでタブで分割し，それぞれをデータベースに登録
 for line in open("resources/pokemon.tsv", "r"):
-    (pokemonNo,
-     pokemonName,
+    (no,
+     name,
      hitPoint,
      attack,
      block,
@@ -42,8 +42,8 @@ for line in open("resources/pokemon.tsv", "r"):
      defense,
      speed,
      weight) = tuple(line[:-1].split("\u0009"))
-    Pokemon.create(pokemonNo=pokemonNo,
-                   pokemonName=pokemonName,
+    Pokemon.create(no=no,
+                   name=name,
                    hitPoint=int(hitPoint),
                    attack=int(attack),
                    block=int(block),

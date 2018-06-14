@@ -9,17 +9,34 @@ from model.pokemon import Pokemon
 pokemonApi = Blueprint('pokemon', __name__)
 
 
-@pokemonApi.route('/getPokemon/<string:pokemonNo>', methods=['GET'])
-def get_user(pokemonNo):
+@pokemonApi.route('/getPokemon', methods=['GET'])
+def get_pokemons():
     try:
-        pokemon = Pokemon.get(Pokemon.pokemonNo == pokemonNo)
+        pokemonList = []
+        for pokemon in Pokemon.select():
+            pokemonList.append({"no": pokemon.no, "name": pokemon.name})
+    except Pokemon.DoesNotExist:
+        abort(404)
+
+    result = {
+        "result": True,
+        "data": pokemonList
+    }
+
+    return make_response(jsonify(result))
+
+
+@pokemonApi.route('/getPokemon/<string:pokemonNo>', methods=['GET'])
+def get_pokemon(pokemonNo):
+    try:
+        pokemon = Pokemon.get(Pokemon.no == pokemonNo)
     except Pokemon.DoesNotExist:
         abort(404)
 
     result = {
         "result": True,
         "data": {
-            "name": pokemon.pokemonName,
+            "name": pokemon.name,
             "attack": pokemon.attack,
             "block": pokemon.block,
             "concentration": pokemon.concentration,

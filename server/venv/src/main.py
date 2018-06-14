@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, jsonify, abort, make_response
+from flask_cors import CORS
 from playhouse.postgres_ext import PostgresqlExtDatabase
 
 from controller.pokemonController import pokemonApi
 
 api = Flask(__name__)
+CORS(api)
 
 api.register_blueprint(pokemonApi)
 
